@@ -3,7 +3,7 @@ class Alunos extends data{
 
     public function GetDisciplinaAllAlunos($Disciplina){
         $sql = "SELECT * FROM alunos A RIGHT JOIN estudantes E ON A.Id = E.Id WHERE Disciplina = :Disciplina";
-        $sql = $db->prepare($sql);
+        $sql = $this->db->prepare($sql);
         $sql->bindValue(':Id', $Disciplina->Id);
         $sql->execute();
 
@@ -15,7 +15,7 @@ class Alunos extends data{
     }
     public function GetAlunosAllDisciplinas($Estudante){
         $sql = "SELECT * FROM alunos A RIGHT JOIN disciplinas D ON A.Id = D.Id WHERE Estudante = :Estudante";
-        $sql = $db->prepare($sql);
+        $sql = $this->db->prepare($sql);
         $sql->bindValue(':Id', $EstudanteId);
         $sql->execute();
 
@@ -49,7 +49,7 @@ class Alunos extends data{
 
     public function Delete($Id){
         $sql = "DELETE FROM alunos WHERE Id = :Id";
-        $sql = $db->prepare($sql);
+        $sql = $this->db->prepare($sql);
         $sql->bindValue(':Id', $Id);
         $sql->execute();
 

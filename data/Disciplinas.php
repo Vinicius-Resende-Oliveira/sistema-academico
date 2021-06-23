@@ -3,7 +3,7 @@ class Disciplinas extends data{
 
     public function Get($Id){
         $sql = "SELECT * FROM disciplinas WHERE Id = :Id";
-        $sql = $db->prepare($sql);
+        $sql = $this->db->prepare($sql);
         $sql->bindValue(':Id', $Id);
         $sql->execute();
 
@@ -15,7 +15,6 @@ class Disciplinas extends data{
     }
     public function GetAll(){
         $sql = "SELECT * FROM disciplinas ORDER BY Nome ASC";
-        $sql = $db->prepare($sql);
         $sql->bindValue(':Id', $Id);
         $sql->execute();
 
@@ -49,7 +48,7 @@ class Disciplinas extends data{
 
     public function Delete($Id){
         $sql = "DELETE FROM disciplinas WHERE Id = :Id";
-        $sql = $db->prepare($sql);
+        $sql = $this->db->prepare($sql);
         $sql->bindValue(':Id', $Id);
         $sql->execute();
 

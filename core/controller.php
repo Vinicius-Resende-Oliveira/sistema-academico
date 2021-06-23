@@ -2,12 +2,10 @@
 class controller {
 
     public function __construct(){
-        // $this->users = new Users();
-        // $this->prints = new Prints();
-        // $this->groups = new Groups();
-        // $this->members = new Members();
-        // $this->requests = new Requests();
-        // $this->weeklygoals = new WeeklyGoals();
+        $this->alunos = new Alunos();
+        $this->disciplinas = new Disciplinas();
+        $this->estudantes = new Estudantes();
+        $this->professores = new Professores();
     }
     public function loadView($viewName, $viewData = array()) {
         extract($viewData);
