@@ -20,15 +20,14 @@ class Estudantes extends data{
         $sql->execute();
 
         if($sql->rowCount() > 0){
-            $sql = $sql->fetch(PDO::FETCH_ASSOC);
+            $sql = $sql->fetchAll(PDO::FETCH_ASSOC);
             return $sql;
         }
         return false;
     }
     public function Insert($estudante){
-        $sql = "INSERT INTO estudantes (Id, Nome, CPF, data_nasc) VALUES (:Id, :Nome, :CPF, :data_nasc)";
+        $sql = "INSERT INTO estudantes (Nome, CPF, data_nasc) VALUES (:Nome, :CPF, :data_nasc)";
         $sql = $this->db->prepare($sql);
-        $sql->bindValue(':Id', $estudante->Id);
         $sql->bindValue(':Nome', $estudante->Nome);
         $sql->bindValue(':CPF', $estudante->CPF);
         $sql->bindValue(':data_nasc', $estudante->Data_Nasc);
