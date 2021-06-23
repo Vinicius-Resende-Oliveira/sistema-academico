@@ -5,9 +5,9 @@ $_config = array();
 global $db;
 date_default_timezone_set('America/Sao_Paulo');
 if(ENVIROMENT == "development"){
-    define("BASE_URL", "http://localhost/estagio/academico/");
+    define("BASE_URL", "http://localhost/academico/");
     $_config['DBName'] = 'academico';
-    $_config['DBHost'] = '127.0.0.1:33006';
+    $_config['DBHost'] = 'localhost';
     $_config['DBUser'] = 'root';
     $_config['DBPass'] = '';
 
