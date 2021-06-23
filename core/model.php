@@ -1,5 +1,5 @@
 <?php
-class model {
+class data {
     protected $db;
     public function __construct(){
         global $db;
