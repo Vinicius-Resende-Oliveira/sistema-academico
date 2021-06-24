@@ -14,7 +14,7 @@ class Disciplinas extends data{
         return false;
     }
     public function GetAll(){
-        $sql = "SELECT * FROM disciplinas ORDER BY Nome ASC";
+        $sql = "SELECT *, (SELECT Count(Id) FROM alunos WHERE alunos.Disciplina = D.Id GROUP BY alunos.Diciplina) as Alunos FROM disciplinas D FULL OUTER JOIN professores P ON D.Professor = P.Id ORDER BY D.Nome ASC";
         $sql->bindValue(':Id', $Id);
         $sql->execute();
 
@@ -25,7 +25,7 @@ class Disciplinas extends data{
         return false;
     }
     public function Insert($disciplina){
-        $sql = "INSERT INTO disciplinas (Nome, Professor) VALUES (:Nome, :Professor)";
+        $sql = "INSERT INTO disciplinas (Nome, Professor)  VALUES (:Nome, :Professor)";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(':Nome', $disciplina->Nome);
         $sql->bindValue(':Professor', $disciplina->Professor);

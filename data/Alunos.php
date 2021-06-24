@@ -2,7 +2,7 @@
 class Alunos extends data{
 
     public function GetDisciplinaAllAlunos($Disciplina){
-        $sql = "SELECT * FROM alunos A RIGHT JOIN estudantes E ON A.Id = E.Id WHERE Disciplina = :Disciplina";
+        $sql = "SELECT * FROM alunos A RIGHT JOIN estudantes E ON A.Estudante = E.Id WHERE Disciplina = :Disciplina";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(':Id', $Disciplina->Id);
         $sql->execute();
@@ -14,7 +14,7 @@ class Alunos extends data{
         return false;
     }
     public function GetAlunosAllDisciplinas($Estudante){
-        $sql = "SELECT * FROM alunos A RIGHT JOIN disciplinas D ON A.Id = D.Id WHERE Estudante = :Estudante";
+        $sql = "SELECT * FROM alunos A RIGHT JOIN disciplinas D ON A.Disciplina = D.Id WHERE Estudante = :Estudante";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(':Id', $EstudanteId);
         $sql->execute();
