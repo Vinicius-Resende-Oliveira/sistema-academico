@@ -23,20 +23,21 @@ class disciplinaController extends controller{
         if($disciplina->Id != 0){
             header('Location: '.BASE_URL.'disciplina/show/'.$disciplina->Id);
         }else{
-            // header('Location: '.BASE_URL.'notFound');
+            header('Location: '.BASE_URL.'notFound');
         }
     }
 
     public function atualizacao($Id){
         $dados['disciplina'] = $this->disciplinas->get($Id);
-        $this->loadView('atualizacaoDisciplina', $dados);
+        $dados['professores'] = $this->professores->getAll();
+        $this->loadTemplete('atualizacaoDisciplina', $dados);
     }
 
     public function atualizar($Id){
         $disciplina = new Disciplina();
         $disciplina->Id = $Id;
         $disciplina->Nome = addslashes($_GET['nome']);
-        $disciplina->CPF = addslashes($_GET['professor']);
+        $disciplina->Professor = addslashes($_GET['professor']);
 
         if($this->disciplinas->update($disciplina)){
             header('Location: '.BASE_URL.'disciplina/show/'.$disciplina->Id);

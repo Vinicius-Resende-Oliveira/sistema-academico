@@ -23,8 +23,8 @@ if(count($estudantes) > 0):
             <td><?=$estudante['cpf']?></td>
             <td><?=$estudante['data_nasc']?></td>
             <td>
-                <a href="<?=BASE_URL?>estudante/excluir/<?=$estudante['Id']?>" class="btn btn-danger">Retirar</a>
-                <!-- <a href="<?=BASE_URL?>disciplina/show/<?=$estudante['Id']?>" class="btn btn-primary">Visualizar</a>  -->
+                <!-- <a href="<?=BASE_URL?>estudante/excluir/<?=$estudante['Id']?>" class="btn btn-danger">Retirar</a> -->
+                <a href="<?=BASE_URL?>estudante/show/<?=$estudante['Id']?>" class="btn btn-primary">Visualizar</a> 
             </td>
         </tr>
 <?php

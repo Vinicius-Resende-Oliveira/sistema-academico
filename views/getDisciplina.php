@@ -1,9 +1,21 @@
 <div class="container">
     <div class="jumbotron mt-5">
         <h1><?=$disciplina['Id']?> - <?=$disciplina['Nome']?>(<?=$disciplina['Alunos']?>)</h1>
-        <p> <a href="<?=BASE_URL?>professor/get/<?=$disciplina['pId']?>"> <?=$disciplina['pNome']?></a></p>
-        <p><a href="<?=BASE_URL?>disciplina/estudantes/<?=$disciplina['Id']?>"> Adicionar Alunos</a></p>
-    </div>      
+        <p> <a href="<?=BASE_URL?>professor/show/<?=$disciplina['pId']?>"> <?=$disciplina['pNome']?></a></p>
+    </div> 
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="<?=BASE_URL?>disciplina/estudantes/<?=$disciplina['Id']?>"> Adicionar Alunos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?=BASE_URL?>disciplina/atualizacao/<?=$disciplina['Id']?>">Editar</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?=BASE_URL?>disciplina/excluir/<?=$disciplina['Id']?>">Excluir</a>
+            </li>
+        </ul>
+    </nav>
     <table class="table table-striped">
         <thead>
         <tr>

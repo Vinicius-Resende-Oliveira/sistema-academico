@@ -1,7 +1,7 @@
 <div class="container">
     <div class="jumbotron mt-5">
         <h1><?=$disciplina['Id']?> - <?=$disciplina['Nome']?>(<?=$disciplina['Alunos']?>)</h1>
-        <p> <a href="<?=BASE_URL?>professor/get/<?=$disciplina['pId']?>"> <?=$disciplina['pNome']?></a></p>
+        <p> <a href="<?=BASE_URL?>professor/show/<?=$disciplina['pId']?>"> <?=$disciplina['pNome']?></a></p>
     </div>      
     <table class="table table-striped">
         <thead>

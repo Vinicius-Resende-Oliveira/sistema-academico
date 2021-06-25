@@ -53,4 +53,11 @@ class professorController extends controller{
             header('Location: '.BASE_URL.'notFound');
         }
     }
+    public function show($Id){
+        $professor = new Professor();
+        $professor->Id = $Id;
+        $dados['professor'] = $this->professores->get($Id);
+        $dados['disciplinas'] = $this->alunos->getProfessorAllDisciplinas($professor);
+        $this->loadTemplete('getProfessor', $dados);
+    }
 }

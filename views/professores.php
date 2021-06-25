@@ -23,8 +23,8 @@ if(count($professores) > 0):
             <td><?=$professor['CPF']?></td>
             <td><?=$professor['data_nasc']?></td>
             <td>
-                <a href="<?=BASE_URL?>professor/excluir/<?=$professor['Id']?>" class="btn btn-danger">Retirar</a>
-                <!-- <a href="<?=BASE_URL?>disciplina/show/<?=$professor['Id']?>" class="btn btn-primary">Visualizar</a>  -->
+                <!-- <a href="<?=BASE_URL?>professor/excluir/<?=$professor['Id']?>" class="btn btn-danger">Retirar</a> -->
+                <a href="<?=BASE_URL?>professor/show/<?=$professor['Id']?>" class="btn btn-primary">Visualizar</a> 
             </td>
         </tr>
 <?php

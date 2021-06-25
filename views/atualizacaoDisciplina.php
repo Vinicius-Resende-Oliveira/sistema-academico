@@ -8,12 +8,12 @@
         </div>
         <div class="form-group">
         <label for="sel1">Select list:</label>
-            <select class="form-control" id="professor">
+            <select class="form-control" name="professor">
             <?php
             if(count($professores) > 0):
                 foreach ($professores as $professor):
             ?>
-                <option value="<?=$professor['Id']?>" <?php ($professor['Id'] == $disciplina['Professor'])? 'selected':'' ;?>><?=$professor['Nome']?></option>
+                <option value="<?=$professor['Id']?>" <?php ($professor['Id'] == $disciplina['pId'])? 'selected':'' ;?> ><?=$professor['Nome']?></option>
             <?php
                 endforeach;
             endif;
@@ -21,6 +21,6 @@
             </select>
         </div>
         
-        <button type="submit" class="btn btn-primary">Cadastrar</button>
+        <button type="submit" class="btn btn-primary">Atualizar</button>
     </form>
 </div>

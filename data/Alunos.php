@@ -13,10 +13,22 @@ class Alunos extends data{
         }
         return array();
     }
-    public function GetAlunosAllDisciplinas($Estudante){
-        $sql = "SELECT * FROM alunos A RIGHT JOIN disciplinas D ON A.Disciplina = D.Id WHERE Estudante = :Estudante";
+    public function getAlunoAllDisciplinas($Estudante){
+        $sql = "SELECT D.Id, D.Nome, P.Id as pId, P.Nome as pNome, (select Count(Id) From alunos A WHERE A.Disciplina = D.Id) as Alunos FROM disciplinas D, professores P, Alunos A WHERE D.Professor = P.Id AND A.Disciplina = D.Id AND A.Estudante = :Estudante";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(':Estudante', $Estudante->Id);
+        $sql->execute();
+
+        if($sql->rowCount() > 0){
+            $sql = $sql->fetchAll(PDO::FETCH_ASSOC);
+            return $sql;
+        }
+        return array();
+    }
+    public function getProfessorAllDisciplinas($professor){
+        $sql = "SELECT D.Id, D.Nome, (select Count(Id) From alunos A WHERE A.Disciplina = D.Id) as Alunos FROM disciplinas D WHERE D.Professor = :Professor";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(':Professor', $professor->Id);
         $sql->execute();
 
         if($sql->rowCount() > 0){

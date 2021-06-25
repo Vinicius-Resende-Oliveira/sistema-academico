@@ -18,7 +18,7 @@ class estudanteController extends controller{
         $estudante->CPF = addslashes($_GET['cpf']);
         $estudante->Data_Nasc = $_GET['data_nasc'];
         $estudante->Id = $this->estudantes->insert($estudante);
-        if($estudantes->Id != 0){
+        if($estudante->Id != 0){
             header('Location: '.BASE_URL.'estudante');
         }else{
             header('Location: '.BASE_URL.'notFound');
@@ -53,5 +53,12 @@ class estudanteController extends controller{
         }else{
             header('Location: '.BASE_URL.'notFound');
         }
+    }
+    public function show($Id){
+        $estudante = new Estudante();
+        $estudante->Id = $Id;
+        $dados['estudante'] = $this->estudantes->get($Id);
+        $dados['disciplinas'] = $this->alunos->getAlunoAllDisciplinas($estudante);
+        $this->loadTemplete('getEstudante', $dados);
     }
 }
