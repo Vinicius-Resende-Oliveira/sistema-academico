@@ -1,5 +1,5 @@
 <div class="container mt-5">
-    <form action="<?=BASE_URL?>estudante/cadastrar" class="was-validated">
+    <form action="<?=BASE_URL?>professor/cadastrar" class="was-validated">
         <div class="form-group">
             <label for="nome">Nome:</label>
             <input type="text" class="form-control" id="nome" placeholder="Digite o nome" name="nome" required>

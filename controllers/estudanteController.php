@@ -2,33 +2,32 @@
 class estudanteController extends controller{
     
     public function index(){
-        $estudantes = $this->estudantes->GetAll();
-        if(!$estudantes){
+        $dados['estudantes'] = $this->estudantes->GetAll();
+        if(!$dados['estudantes']){
             echo "Não há estudantes cadastrados";
             return; 
         }
-        echo "<pre>";
-        print_r($estudantes);
+        $this->loadTemplete('estudantes', $dados);
     }
     public function cadastro(){
-        $this->loadView('cadastroEstudante');
+        $this->loadtemplete('cadastroEstudante');
     }
     public function cadastrar(){
         $estudante = new Estudante();
-        $estudante->Nome = addslahes($_GET['nome']);
-        $estudante->CPF = addslahes($_GET['cpf']);
+        $estudante->Nome = addslashes($_GET['nome']);
+        $estudante->CPF = addslashes($_GET['cpf']);
         $estudante->Data_Nasc = $_GET['data_nasc'];
-
-        if($this->estudantes->insert($estudante)){
-            echo 'cadastrado';
+        $estudante->Id = $this->estudantes->insert($estudante);
+        if($estudantes->Id != 0){
+            header('Location: '.BASE_URL.'estudante');
         }else{
-            echo 'error';
+            header('Location: '.BASE_URL.'notFound');
         }
     }
 
     public function atualizacao($Id){
         $dados['estudante'] = $this->estudantes->get($Id);
-        $this->loadView('atualizacaoEstudante', $dados);
+        $this->loadTemplete('atualizacaoEstudante', $dados);
     }
     public function atualizar($Id){
         $estudante = new Estudante();
@@ -38,19 +37,21 @@ class estudanteController extends controller{
         $estudante->Data_Nasc = $_GET['data_nasc'];
 
         if($this->estudantes->update($estudante)){
-            echo 'atualizado';
+            header('Location: '.BASE_URL.'estudante');
         }else{
-            echo 'error';
+            header('Location: '.BASE_URL.'notFound');
         }
     }
-    public function deletar($Id){
+    public function excluir($Id){
         $estudante = new Estudante();
         $estudante->Id = $Id;
 
         if($this->estudantes->delete($estudante)){
-            echo 'deletado';
+            if($this->alunos->deleteAllEstudante($estudante)){
+                header('Location: '.BASE_URL.'estudante');
+            }
         }else{
-            echo 'error';
+            header('Location: '.BASE_URL.'notFound');
         }
     }
 }

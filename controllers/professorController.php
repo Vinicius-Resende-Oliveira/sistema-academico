@@ -2,34 +2,34 @@
 class professorController extends controller{
     
     public function index(){
-        $professores = $this->professores->GetAll();
-        if(!$professores){
+        $dados['professores'] = $this->professores->GetAll();
+        if(!$dados['professores']){
             echo "Não há professores cadastrados";
             return; 
         }
-        echo "<pre>";
-        print_r($professores);
+        $this->loadTemplete('professores', $dados);
     }
     public function cadastro(){
-        $this->loadView('cadastroProfessor');
+        $this->loadTemplete('cadastroProfessor');
     }
     public function cadastrar(){
         $professor = new Professor();
-        $professor->Nome = addslahes($_GET['nome']);
-        $professor->CPF = addslahes($_GET['cpf']);
+        $professor->Nome = addslashes($_GET['nome']);
+        $professor->CPF = addslashes($_GET['cpf']);
         $professor->Data_Nasc = $_GET['data_nasc'];
-
-        if($this->professores->insert($professor)){
-            echo 'cadastrado';
+        $professor->Id = $this->professores->insert($professor);
+        if($professor->Id != 0){
+            header('Location: '.BASE_URL.'professor');
         }else{
-            echo 'error';
+            header('Location: '.BASE_URL.'notFound');
         }
     }
 
     public function atualizacao($Id){
         $dados['professor'] = $this->professores->get($Id);
-        $this->loadView('atualizacaoProfessor', $dados);
+        $this->loadTemplete('atualizacaoProfessor', $dados);
     }
+    
     public function atualizar($Id){
         $professor = new Professor();
         $professor->Id = $Id;
@@ -38,9 +38,9 @@ class professorController extends controller{
         $professor->Data_Nasc = $_GET['data_nasc'];
 
         if($this->professores->update($professor)){
-            echo 'atualizado';
+            header('Location: '.BASE_URL.'professor');
         }else{
-            echo 'error';
+            header('Location: '.BASE_URL.'notFound');
         }
     }
     public function deletar($Id){
@@ -48,9 +48,9 @@ class professorController extends controller{
         $professor->Id = $Id;
 
         if($this->professores->delete($professor)){
-            echo 'deletado';
+            header('Location: '.BASE_URL.'professor');
         }else{
-            echo 'error';
+            header('Location: '.BASE_URL.'notFound');
         }
     }
 }

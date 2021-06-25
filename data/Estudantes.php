@@ -31,9 +31,9 @@ class Estudantes extends data{
         $sql->bindValue(':CPF', $estudante->CPF);
         $sql->bindValue(':data_nasc', $estudante->Data_Nasc);
         if($sql->execute()){
-            return true;
+            return $this->db->lastInsertId();
         }
-        return false;
+        return 0;
     }
     public function Update($estudante){
         $sql = "UPDATE estudantes SET Nome = :Nome, CPF = :CPF, data_nasc = :data_nasc WHERE Id = :Id";
@@ -48,10 +48,10 @@ class Estudantes extends data{
         return false;
     }
 
-    public function Delete($Id){
+    public function Delete($estudante){
         $sql = "DELETE FROM estudantes WHERE Id = :Id";
         $sql = $this->db->prepare($sql);
-        $sql->bindValue(':Id', $Id);
+        $sql->bindValue(':Id', $estudante->Id);
         $sql->execute();
 
         if($sql->execute()){

@@ -15,6 +15,7 @@ class Professores extends data{
     }
     public function GetAll(){
         $sql = "SELECT * FROM professores ORDER BY Nome ASC";
+        $sql = $this->db->prepare($sql);
         $sql->execute();
 
         if($sql->rowCount() > 0){
@@ -30,9 +31,9 @@ class Professores extends data{
         $sql->bindValue(':CPF', $professor->CPF);
         $sql->bindValue(':data_nasc', $professor->Data_Nasc);
         if($sql->execute()){
-            return true;
+            return $this->db->lastInsertId();
         }
-        return false;
+        return 0;
     }
     public function Update($professor){
         $sql = "UPDATE professores SET Nome = :Nome, CPF = :CPF, data_nasc = :data_nasc WHERE Id = :Id";

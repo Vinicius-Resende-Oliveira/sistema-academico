@@ -2,7 +2,7 @@
 class homeController extends controller{
     
     public function home(){
-        echo "Hello WORD";
+        require 'views/templete.php';
     }
 
 }
